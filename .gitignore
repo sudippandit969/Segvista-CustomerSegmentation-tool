@@ -1,0 +1,10 @@
+# Local secrets
+.env
+**/.env
+
+# Generated/runtime files
+**/__pycache__/
+backend/*.log
+backend/db/
+frontend/*.log
+frontend/dist/
