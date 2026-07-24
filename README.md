@@ -2,6 +2,12 @@
 
 **Segvista** is an AI-powered customer intelligence platform designed to transform raw customer transaction datasets into actionable business retention insights. Built with **FastAPI**, **scikit-learn**, **Pandas**, **React**, and **Recharts**, Segvista performs automated **RFM (Recency, Frequency, Monetary) analysis** and **K-Means machine learning clustering** to identify high-value VIPs, churn-risk accounts, and revenue trends.
 
+## Live Deployment
+
+- **Live application:** [https://segvista.vercel.app](https://segvista.vercel.app)
+- **Backend API:** [https://segvista-customersegmentation-tool.onrender.com](https://segvista-customersegmentation-tool.onrender.com)
+- **Interactive API docs:** [https://segvista-customersegmentation-tool.onrender.com/docs](https://segvista-customersegmentation-tool.onrender.com/docs)
+
 ---
 
 ## ✨ Features
