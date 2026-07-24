@@ -5,8 +5,6 @@
 ## Live Deployment
 
 - **Live application:** [https://segvista.vercel.app](https://segvista.vercel.app)
-- **Backend API:** [https://segvista-customersegmentation-tool.onrender.com](https://segvista-customersegmentation-tool.onrender.com)
-- **Interactive API docs:** [https://segvista-customersegmentation-tool.onrender.com/docs](https://segvista-customersegmentation-tool.onrender.com/docs)
 
 ---
 
