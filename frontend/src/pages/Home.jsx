@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BarChart2, Users, PieChart, ShieldCheck, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, BarChart2, Users, PieChart, Sparkles } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -8,7 +8,7 @@ const Home = () => {
       <section className="hero">
         <div className="hero-bg-glow"></div>
         <div className="hero-content" style={{ maxWidth: '850px', textAlign: 'center', margin: '0 auto' }}>
-          <div style={{
+          <div className="hero-badge" style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
@@ -40,16 +40,16 @@ const Home = () => {
         </div>
       </section>
 
-      <section style={{ padding: '90px 5%', background: 'rgba(255, 255, 255, 0.35)' }}>
-        <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 60px auto' }}>
+      <section className="features-section" style={{ padding: '90px 5%', background: 'rgba(255, 255, 255, 0.35)' }}>
+        <div className="features-heading" style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 60px auto' }}>
           <h2 style={{ fontSize: '2.4rem', marginBottom: '16px', color: 'var(--text-primary)' }}>Why Industry Leaders Choose Segvista</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
             Transform raw transaction rows into actionable retention strategies in seconds.
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', maxWidth: '1200px', margin: '0 auto' }}>
-          <div className="glass-panel" style={{ padding: '40px', textAlign: 'left', transition: 'transform 0.3s ease' }}>
+        <div className="features-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', maxWidth: '1200px', margin: '0 auto' }}>
+          <div className="glass-panel feature-card" style={{ padding: '40px', textAlign: 'left', transition: 'transform 0.3s ease' }}>
             <div style={{
               width: '56px',
               height: '56px',
@@ -68,7 +68,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="glass-panel" style={{ padding: '40px', textAlign: 'left', transition: 'transform 0.3s ease' }}>
+          <div className="glass-panel feature-card" style={{ padding: '40px', textAlign: 'left', transition: 'transform 0.3s ease' }}>
             <div style={{
               width: '56px',
               height: '56px',
@@ -87,7 +87,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="glass-panel" style={{ padding: '40px', textAlign: 'left', transition: 'transform 0.3s ease' }}>
+          <div className="glass-panel feature-card" style={{ padding: '40px', textAlign: 'left', transition: 'transform 0.3s ease' }}>
             <div style={{
               width: '56px',
               height: '56px',

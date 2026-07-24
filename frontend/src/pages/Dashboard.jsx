@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Loader, ArrowRight, Upload, CloudUpload, CheckCircle, AlertTriangle, X, Info } from 'lucide-react';
+import { Loader, ArrowRight, Upload, CloudUpload, CheckCircle, AlertTriangle, X, Info } from 'lucide-react';
 import axios from 'axios';
+import { apiUrl } from '../api';
 import { PieChart, Pie, Cell, BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
 const COLORS = ['#00C49F', '#FFBB28', '#FF8042', '#0088FE', '#ff4b4b'];
@@ -110,8 +111,8 @@ const Dashboard = () => {
 
     try {
       const [dashRes, topRes] = await Promise.all([
-        axios.get('http://localhost:8000/api/dashboard', { headers }),
-        axios.get('http://localhost:8000/api/customers/top', { headers })
+        axios.get(apiUrl('/api/dashboard'), { headers }),
+        axios.get(apiUrl('/api/customers/top'), { headers })
       ]);
 
       if (dashRes.data && Object.keys(dashRes.data).length > 0) {
@@ -144,12 +145,6 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/');
-  };
-
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -162,7 +157,7 @@ const Dashboard = () => {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/upload', formData, {
+      const response = await axios.post(apiUrl('/api/upload'), formData, {
         headers: {
           ...headers,
           'Content-Type': 'multipart/form-data',
@@ -215,9 +210,6 @@ const Dashboard = () => {
             <h2>Welcome, {user.name || 'there'}!</h2>
             <p style={{ color: 'var(--text-secondary)' }}>Get started by uploading your customer transaction data.</p>
           </div>
-          <button className="btn-secondary" onClick={handleLogout} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <LogOut size={18} /> Logout
-          </button>
         </div>
 
         <div className="glass-panel" style={{ 
@@ -310,7 +302,7 @@ const Dashboard = () => {
           <h2>Executive Overview</h2>
           <p style={{ color: 'var(--text-secondary)' }}>Welcome back, {user.name || 'there'}. Here's what's happening with your customers today.</p>
         </div>
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div className="dashboard-actions" style={{ display: 'flex', gap: '10px' }}>
           <input
             type="file"
             accept=".csv"
@@ -329,9 +321,6 @@ const Dashboard = () => {
           
           <button className="btn-secondary" onClick={() => navigate('/customers')} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             View Directory <ArrowRight size={18} />
-          </button>
-          <button className="btn-secondary" onClick={handleLogout} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <LogOut size={18} /> Logout
           </button>
         </div>
       </div>
@@ -392,7 +381,7 @@ const Dashboard = () => {
       </div>
 
       {/* Charts Row 2 */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '20px' }}>
+      <div className="charts-grid charts-grid-equal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '20px' }}>
         {data.charts.paymentModes && data.charts.paymentModes.length > 0 ? (
           <div className="glass-panel" style={{ padding: '20px', minHeight: '350px' }}>
             <h3 style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>Payment Mode Preferences by Segment</h3>

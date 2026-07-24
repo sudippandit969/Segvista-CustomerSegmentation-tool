@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { apiUrl } from '../api';
 import { Download, Loader, ArrowLeft } from 'lucide-react';
 
 const Customers = () => {
@@ -25,8 +26,8 @@ const Customers = () => {
 
     try {
       const url = segment === 'All' 
-        ? 'http://localhost:8000/api/customers' 
-        : `http://localhost:8000/api/customers?segment=${segment}`;
+        ? apiUrl('/api/customers')
+        : apiUrl(`/api/customers?segment=${encodeURIComponent(segment)}`);
       const response = await axios.get(url, { headers });
       setCustomers(response.data);
     } catch (error) {
@@ -59,8 +60,8 @@ const Customers = () => {
     }
     // For export, we need to pass the token as a query param since window.open can't set headers
     const url = segmentFilter === 'All' 
-      ? `http://localhost:8000/api/export?token=${token}` 
-      : `http://localhost:8000/api/export?segment=${segmentFilter}&token=${token}`;
+      ? apiUrl(`/api/export?token=${encodeURIComponent(token)}`)
+      : apiUrl(`/api/export?segment=${encodeURIComponent(segmentFilter)}&token=${encodeURIComponent(token)}`);
     window.open(url, '_blank');
   };
 
@@ -76,7 +77,7 @@ const Customers = () => {
   };
 
   return (
-    <div className="dashboard-container animate-fade-in" style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="dashboard-container customer-directory animate-fade-in" style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
       <div className="dashboard-header" style={{ marginBottom: '30px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
@@ -98,7 +99,7 @@ const Customers = () => {
           <p style={{ color: 'var(--text-secondary)' }}>View, filter, and export your segmented customer list.</p>
         </div>
         
-        <div style={{ display: 'flex', gap: '15px' }}>
+        <div className="directory-actions" style={{ display: 'flex', gap: '15px' }}>
           <select 
             className="input-field" 
             style={{ width: '200px', marginBottom: 0 }}
@@ -136,8 +137,8 @@ const Customers = () => {
             </button>
           </div>
         ) : (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+          <div className="table-scroll" style={{ overflowX: 'auto' }}>
+            <table className="customer-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid var(--glass-border)' }}>
                   <th style={{ padding: '16px 20px', color: 'var(--text-secondary)' }}>Customer ID</th>

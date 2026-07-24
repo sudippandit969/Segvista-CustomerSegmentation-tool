@@ -22,7 +22,6 @@ const Footer = () => {
           <h3>Resources</h3>
           <ul>
             <li><Link to="/">Documentation</Link></li>
-            <li><Link to="/">Blog</Link></li>
             <li><Link to="/">Support</Link></li>
           </ul>
         </div>
